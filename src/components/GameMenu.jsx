@@ -1,26 +1,58 @@
-import React from 'react'
-import logo from '../assets/images/logo.svg' 
-import x from '../assets/images/icons/icon-x-grey.svg'
-import o from '../assets/images/icons/icon-o-grey.svg'
-
+import React, { useState } from "react";
+import logo from "../assets/images/logo.svg";
+import x from "../assets/images/icons/icon-x-grey.svg";
+import o from "../assets/images/icons/icon-o-grey.svg";
+import xGreen from "../assets/images/icons/icon-x-black.svg";
+import oGreen from "../assets/images/icons/icon-o-black.svg";
+import Button from "./Button";
 
 const GameMenu = () => {
-    return (
-    <div className=" min-h-screen w-full flex flex-col justify-center items-center">
-        <img src={logo} alt="SVG Image" />
-        <div className='mx-0 my-10 p-[24px_24px_29px] text-center bg-[#253B48] shadow-[inset_0px_-8px_0px_#10212A] rounded-[15px] w-md'>
-            <h1 className='text-[1.2rem] leading-[20.16px] font-bold pl-[2px] text-[#A8BFC9] mb-[15px]'>PICK PLAYER 1’S MARK</h1>
-            <div className='my-[24px_0_18px] h-22 px-2 py-5 bg-[#1F3641] relative flex items-center justify-center rounded-[10px] w-full'>
-                <div className=' flex items-center justify-center m-1 w-md h-[72px] bg-[#DBE8ED] rounded-[10px]'>
-                    <img src={x} alt="SVG image" className='w-[32px]' />
-                </div>
-                <div className=' flex items-center justify-center m-1  w-md h-[72px] bg-[#DBE8ED] rounded-[10px]'>
-                    <img src={o} alt="SVG image" className='w-[32px]' />
-                </div>
-            </div>
+  const [mark, setMark] = useState("O");
+
+  return (
+    <div className="min-h-screen w-full flex flex-col justify-center items-center px-4">
+      {/* Logo */}
+      <img src={logo} alt="SVG Logo" className="w-[80px] md:w-[100px]" />
+
+      {/* Mark Selection Box */}
+      <div className="w-full max-w-[400px] bg-[#253B48] shadow-[inset_0px_-8px_0px_#10212A] rounded-[15px] p-6 mt-6 text-center">
+        <h1 className="text-base md:text-lg font-bold text-[#A8BFC9] mb-4">
+          PICK PLAYER 1’S MARK
+        </h1>
+
+        {/* Mark Selection */}
+        <div className="flex items-center justify-center bg-[#1F3641] rounded-[10px] p-1">
+          <div
+            className={`flex items-center justify-center m-1 w-[50%] h-[50px] rounded-[10px] cursor-pointer transition-all duration-200 ${
+              mark === "X" ? "bg-[#DBE8ED]" : "bg-transparent"
+            }`}
+            onClick={() => setMark("X")}
+          >
+            <img src={mark === "X" ? xGreen : x} alt="X Mark" className="w-[28px] md:w-[32px]" />
+          </div>
+
+          <div
+            className={`flex items-center justify-center m-1 w-[50%] h-[50px] rounded-[10px] cursor-pointer transition-all duration-200 ${
+              mark === "O" ? "bg-[#DBE8ED]" : "bg-transparent"
+            }`}
+            onClick={() => setMark("O")}
+          >
+            <img src={mark === "O" ? oGreen : o} alt="O Mark" className="w-[28px] md:w-[32px]" />
+          </div>
         </div>
+
+        <label className="block text-sm md:text-base font-bold text-[#A8BFC9] mt-4">
+          REMEMBER: X GOES FIRST
+        </label>
       </div>
-      
-    )
-}
-export default GameMenu
+
+      {/* Buttons */}
+      <div className="grid gap-4 mt-6 w-full max-w-[400px]">
+        <Button variant="orange" size="large">NEW GAME (VS CPU)</Button>
+        <Button variant="green" size="large">NEW GAME (VS PLAYER)</Button>
+      </div>
+    </div>
+  );
+};
+
+export default GameMenu;
