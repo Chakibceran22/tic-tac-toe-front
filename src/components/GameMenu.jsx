@@ -5,9 +5,11 @@ import o from "../assets/images/icons/icon-o-grey.svg";
 import xGreen from "../assets/images/icons/icon-x-black.svg";
 import oGreen from "../assets/images/icons/icon-o-black.svg";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 import {motion } from "framer-motion";
 const GameMenu = () => {
-  const [mark, setMark] = useState("O");
+  const [mark, setMark] = useState("X");
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen w-full flex flex-col justify-center items-center px-4">
@@ -44,7 +46,7 @@ const GameMenu = () => {
       </div>
 
       <div className="grid gap-4 mt-6 w-full max-w-[400px]">
-        <Button variant="orange" size="large">NEW GAME (VS CPU)</Button>
+        <Button variant="orange" size="large" onClick={() => navigate('/game')}>NEW GAME (VS CPU)</Button>
         <Button variant="green" size="large">NEW GAME (VS PLAYER)</Button>
       </div>
     </div>
