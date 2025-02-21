@@ -7,9 +7,16 @@ import oGreen from "../assets/images/icons/icon-o-black.svg";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import {motion } from "framer-motion";
-const GameMenu = ({playerChoice, setPlayerChoice}) => {
+const GameMenu = () => {
+  
   const navigate = useNavigate();
+  const [ playerChoice, setPlayerChoice ] = useState("x");
+  const handlePlayCPU = () => {
+    console.log("to go agaist cpu")
+    sessionStorage.setItem("playerChoice", playerChoice);
+    navigate("/game");
 
+  }
   return (
     <div className="min-h-screen w-full flex flex-col justify-center items-center px-4">
       <img src={logo} alt="SVG Logo" className="w-[80px] md:w-[100px]" />
@@ -45,7 +52,7 @@ const GameMenu = ({playerChoice, setPlayerChoice}) => {
       </div>
 
       <div className="grid gap-4 mt-6 w-full max-w-[400px]">
-        <Button variant="orange" size="large" onClick={() => navigate('/game')}>NEW GAME (VS CPU)</Button>
+        <Button variant="orange" size="large" onClick={() => handlePlayCPU()}>NEW GAME (VS CPU)</Button>
         <Button variant="green" size="large">NEW GAME (VS PLAYER)</Button>
       </div>
     </div>

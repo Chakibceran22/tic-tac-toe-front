@@ -7,13 +7,12 @@ import GameMenu from './components/GameMenu'
 import GameBody from './components/GameBody'
 
 function App() {
-  const [playerChoice, setPlayerChoice] = useState("x")
   return (
     <>
     <Router>
       <Routes>
-        <Route path='/' element={<GameMenu playerChoice={playerChoice} setPlayerChoice={setPlayerChoice}/>}/>
-        <Route path='/game' element={<GameBody playerChoice={playerChoice}/>}/>
+        <Route path='/' element={<GameMenu />}/>
+        <Route path='/game' element={<GameBody />}/>
       </Routes>
     </Router>
     </>
