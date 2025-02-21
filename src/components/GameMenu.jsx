@@ -7,8 +7,7 @@ import oGreen from "../assets/images/icons/icon-o-black.svg";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import {motion } from "framer-motion";
-const GameMenu = () => {
-  const [mark, setMark] = useState("X");
+const GameMenu = ({playerChoice, setPlayerChoice}) => {
   const navigate = useNavigate();
 
   return (
@@ -23,20 +22,20 @@ const GameMenu = () => {
         <div className="flex items-center justify-center bg-[#1F3641] rounded-[10px] p-1">
           <div
             className={`flex items-center justify-center m-1 w-[50%] h-[50px] rounded-[10px] cursor-pointer transition-all duration-200 ${
-              mark === "X" ? "bg-[#DBE8ED]" : "bg-transparent"
+              playerChoice === "x" ? "bg-[#DBE8ED]" : "bg-transparent"
             }`}
-            onClick={() => setMark("X")}
+            onClick={() => setPlayerChoice("x")}
           >
-            <img src={mark === "X" ? xGreen : x} alt="X Mark" className="w-[28px] md:w-[32px]" />
+            <img src={playerChoice === "x" ? xGreen : x} alt="X Mark" className="w-[28px] md:w-[32px]" />
           </div>
 
           <div
             className={`flex items-center justify-center m-1 w-[50%] h-[50px] rounded-[10px] cursor-pointer transition-all duration-200 ${
-              mark === "O" ? "bg-[#DBE8ED]" : "bg-transparent"
+              playerChoice === "o" ? "bg-[#DBE8ED]" : "bg-transparent"
             }`}
-            onClick={() => setMark("O")}
+            onClick={() => setPlayerChoice("o")}
           >
-            <img src={mark === "O" ? oGreen : o} alt="O Mark" className="w-[28px] md:w-[32px]" />
+            <img src={playerChoice === "o" ? oGreen : o} alt="O Mark" className="w-[28px] md:w-[32px]" />
           </div>
         </div>
 
