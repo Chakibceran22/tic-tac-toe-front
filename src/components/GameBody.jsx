@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import x from "../assets/images/icons/icon-x-outline.svg";
 import o from "../assets/images/icons/icon-o-outline.svg";
 import xGreen from "../assets/images/icons/icon-x.svg";
@@ -12,8 +12,9 @@ import GameHeader from './GameHeader';
 
 
 
-const GameBoard = ({ playerChoice}) => {
-  const [currentPlayer, setCurrentPlayer] = useState("x");
+const GameBoard = ({ }) => {
+  const [playerChoice, setPlayerChoice] = useState(null);
+  const [currentPlayer, setCurrentPlayer] = useState(null);
   const [cells, setCells] = useState(Array(9).fill(null));
   const [playerScore, setPlayerScore] = useState(0);
   const [opponentScore, setOpponentScore] = useState(0);
@@ -30,8 +31,13 @@ const GameBoard = ({ playerChoice}) => {
 
   const handleReset = () => {
     setCells(Array(9).fill(null));
-    setCurrentPlayer("x");
+    setCurrentPlayer(playerChoice);
   };
+  useEffect(() => {
+    const playerChoice = sessionStorage.getItem("playerChoice");
+    setPlayerChoice(playerChoice);
+    setCurrentPlayer(playerChoice);
+  },[])
 
   return (
     <div className="min-h-screen w-full bg-[#1A2A33] px-4 py-6">
