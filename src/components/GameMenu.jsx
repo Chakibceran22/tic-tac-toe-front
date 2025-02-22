@@ -6,7 +6,6 @@ import xGreen from "../assets/images/icons/icon-x-black.svg";
 import oGreen from "../assets/images/icons/icon-o-black.svg";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
-import {motion } from "framer-motion";
 const GameMenu = () => {
   
   const navigate = useNavigate();

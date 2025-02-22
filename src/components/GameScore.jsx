@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 function GameScores({ playerMark, playerScore, opponentScore, tieScore }) {
     return (
