@@ -3,6 +3,7 @@ import xGreen from '../assets/images/icons/icon-x.svg'
 import oYellow from '../assets/images/icons/icon-o.svg'
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import { LockIcon } from "lucide-react";
 
 const GameWin = ({ playerChoice, player, setCells, setCurrentPlayer, setIsWin }) => {
     const navigate = useNavigate();
@@ -23,13 +24,17 @@ const GameWin = ({ playerChoice, player, setCells, setCurrentPlayer, setIsWin })
                     </h2>
                     
                     <div className="flex items-center justify-center space-x-4">
-                        <img 
-                            src={player === 'x' ? xGreen : oYellow}
+                        {player === 'x' || player ==='o'  ? (
+                            <img 
+                            src={player === 'x' ? xGreen : player === 'o' ? oYellow : ''}
                             alt={`Player ${player}`}
                             className="w-12 h-12 md:w-16 md:h-16"
-                        />
-                        <h1 className={`text-2xl md:text-4xl font-bold  ${player === 'x' ? 'text-[#31C3BD]' : 'text-[#F2B137]'}`}>
-                            WON THE GAME
+                            />
+                        ):(
+                            <LockIcon size={64} className="w-12 h-12 md:w-16 md:h-16 text-[#A8BFC9]"/>
+                        )}
+                        <h1 className={`text-2xl md:text-4xl font-bold  ${player === 'x' ? 'text-[#31C3BD]' : player === 'o' ? 'text-[#FFD700]' : 'text-[#A8BFC9]'}`}>
+                            {player === 'x' || player === 'o' ? "WON THE GAME" : 'TIE'}
                         </h1>
                     </div>
 

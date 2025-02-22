@@ -12,7 +12,6 @@ function App() {
       <Routes>
         <Route path='/' element={<GameMenu />}/>
         <Route path='/game' element={<GameBody />}/>
-        <Route path='/win' element={<GameWin player={'x'} />}/>
       </Routes>
     </Router>
     </>

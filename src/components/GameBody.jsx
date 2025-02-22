@@ -139,6 +139,7 @@ const GameBoard = ({ }) => {
     const playerChoice = sessionStorage.getItem("playerChoice");
     setPlayerChoice(playerChoice);
     setCurrentPlayer(playerChoice);
+    document.title = "Tic Tac Toe";
   }, [])
 
   return (

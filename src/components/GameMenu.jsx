@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/images/logo.svg";
 import x from "../assets/images/icons/icon-x-grey.svg";
 import o from "../assets/images/icons/icon-o-grey.svg";
@@ -16,6 +16,11 @@ const GameMenu = () => {
     navigate("/game");
 
   }
+    useEffect(() => {
+      
+      document.title = "Tic Tac Toe";
+    }, [])
+  
   return (
     <div className="min-h-screen w-full flex flex-col justify-center items-center px-4">
       <img src={logo} alt="SVG Logo" className="w-[80px] md:w-[100px]" />
