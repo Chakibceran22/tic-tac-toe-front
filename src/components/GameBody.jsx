@@ -3,7 +3,7 @@ import x from "../assets/images/icons/icon-x-outline.svg";
 import o from "../assets/images/icons/icon-o-outline.svg";
 import xGreen from "../assets/images/icons/icon-x.svg";
 import oYellow from "../assets/images/icons/icon-o.svg";
-
+import GameWin from './GameWin';
 import GameScores from './GameScore';
 import GameHeader from './GameHeader';
 
@@ -17,8 +17,10 @@ const GameBoard = ({ }) => {
   const [opponentScore, setOpponentScore] = useState(0);
   const [tieScore, setTieScore] = useState(0);
   const [isWin, setIsWin] = useState(false);
+  const [winner, setWinner] = useState(null);
 
   const handleCellClick = (index) => {
+
     if (cells[index] !== null) return; 
     if (currentPlayer !== playerChoice) return; 
 
@@ -41,24 +43,28 @@ const GameBoard = ({ }) => {
       console.log("Player wins");
       setPlayerScore(playerScore + 1);
       setIsWin(true);
-      endGame(newCells);
+      setCells(newCells.map((cell, idx) => (cell === null ? 10 : cell)))
+      setWinner(playerChoice);
     } else if (winner === opponentChoice) {
       console.log("Opponent wins");
       setOpponentScore(opponentScore + 1);
       setIsWin(true);
-      endGame(newCells);
+      setCells(newCells.map((cell, idx) => (cell === null ? 10 : cell)))
+      setWinner(opponentChoice);
+
     } else if (winner === "tie") {
       console.log("It's a tie");
       setTieScore(tieScore + 1);
       setIsWin(true);
-      endGame(newCells);
+      setCells(newCells.map((cell, idx) => (cell === null ? 10 : cell)))
+      setWinner("tie");
     }
     
     }, 500);
     
   };
   const endGame = (newCells) => {
-    setIsWin(false);
+    setIsWin(true);
     setCells(newCells.map((cell, idx) => (cell === null ? 10 : cell)))
     setCurrentPlayer(playerChoice);
   }
@@ -186,10 +192,10 @@ const GameBoard = ({ }) => {
           
           <GameScores playerMark={playerChoice} tieScore={tieScore} opponentScore={opponentScore} playerScore={playerScore} />
         </div>
-
-
+        {isWin && <GameWin playerChoice={playerChoice}   player={winner}  setIsWin={setIsWin} setCells={setCells} setCurrentPlayer={setCurrentPlayer} />}
+        
       </div>
-          
+      
     </div>
   );
 };

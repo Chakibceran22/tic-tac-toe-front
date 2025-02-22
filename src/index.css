@@ -3,5 +3,6 @@
 @layer base {
   body {
     background-color: #1F3641;
+    overflow: hidden;
   }
 }
