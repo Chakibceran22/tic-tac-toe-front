@@ -77,7 +77,7 @@ const GameBoard = ({ }) => {
       const [a, b, c] = combo;
       const values = [board[a], board[b], board[c]];
       if (values.filter(v => v === aiSymbol).length === 2 && values.includes(null)) {
-        return combo[values.indexOf(null)]; // Winning move
+        return combo[values.indexOf(null)]; 
       }
     }
 
@@ -157,13 +157,20 @@ const GameBoard = ({ }) => {
                 className="w-full h-full flex items-center justify-center cursor-pointer"
                 onClick={() => handleCellClick(index)}
               >
-                {cells[index] ? (
+                {cells[index] === 'x' ? (
                   <img
-                    src={cells[index] === "x" ? xGreen : oYellow}
+                    src={xGreen}
+                    alt={`${cells[index]} mark`}
+                    className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
+                  />
+                ) : cells[index] === 'o' ? (
+                  <img
+                    src={oYellow}
                     alt={`${cells[index]} mark`}
                     className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16"
                   />
                 ) : (
+                  
                   <img
                     src={playerChoice === "x" ? x : o}
                     alt="Hover mark"
@@ -171,10 +178,12 @@ const GameBoard = ({ }) => {
                               opacity-0 transition-opacity duration-200 
                               group-hover:opacity-100"
                   />
+                  
                 )}
               </button>
             </div>
           ))}
+          
           <GameScores playerMark={playerChoice} tieScore={tieScore} opponentScore={opponentScore} playerScore={playerScore} />
         </div>
 
