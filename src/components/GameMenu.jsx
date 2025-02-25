@@ -57,7 +57,7 @@ const GameMenu = () => {
 
       <div className="grid gap-4 mt-6 w-full max-w-[400px]">
         <Button variant="orange" size="large" onClick={() => handlePlayCPU()}>NEW GAME (VS CPU)</Button>
-        <Button variant="green" size="large">NEW GAME (VS PLAYER)</Button>
+        <Button variant="green" size="large"  onClick={() => navigate('/game-player')}>NEW GAME (VS PLAYER)</Button>
       </div>
     </div>
   );
